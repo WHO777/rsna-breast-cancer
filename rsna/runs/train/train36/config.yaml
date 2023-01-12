@@ -1,0 +1,71 @@
+callbacks:
+- !!python/tuple
+  - ModelCheckpoint
+  - filepath: checkpoints
+    mode: max
+    monitor: val_auc
+    save_best_only: true
+- !!python/tuple
+  - TensorBoard
+  - log_dir: logs
+- !!python/tuple
+  - CSVLogger
+  - filename: history.csv
+devices:
+- 0
+- 1
+- 2
+loss:
+  alpha: 0.8
+  from_logits: false
+  gamma: 0.2
+  type: SigmoidFocalCrossEntropy
+metrics:
+- type: pFBeta
+- !!python/tuple
+  - AUC
+  - {}
+mixed_precision: float32
+model:
+  backbone:
+    freeze: true
+    input_shape: !!python/tuple
+    - 1024
+    - 1024
+    - 3
+    type: EfficientNetV2B3
+    weights: imagenet
+  head:
+    num_classes: 1
+    num_hidden_units: 32
+    type: SimpleHead
+optimizer:
+  learning_rate: 0.001
+  type: adam
+scheduler:
+  first_decay_steps: 10
+  initial_learning_rate: 0.001
+  type: CosineDecayRestarts
+train:
+  dataset:
+    as_generator: false
+    batch_size: 48
+    csv: /app/dataset/train_fold_0.csv
+    image_shape: &id001 !!python/tuple
+    - 1024
+    - 1024
+    images_column: image_path
+    labels_column: cancer
+    shuffle: true
+    type: CSVDataset
+  epochs: 10
+val:
+  dataset:
+    as_generator: false
+    batch_size: 48
+    csv: /app/dataset/val_fold_0.csv
+    image_shape: *id001
+    images_column: image_path
+    labels_column: cancer
+    shuffle: false
+    type: CSVDataset

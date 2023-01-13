@@ -1,5 +1,6 @@
 runs
 rsna/.idea
+scripts/.idea
 rsna/__pycache__
 rsna/datasets/__pycache__
 rsna/models/__pycache__

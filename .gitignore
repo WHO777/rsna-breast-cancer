@@ -1,2 +1,12 @@
 runs
 rsna/.idea
+rsna/__pycache__
+rsna/datasets/__pycache__
+rsna/models/__pycache__
+rsna/models/backbones/__pycache__
+rsna/models/losses/__pycache__
+rsna/models/metrics/__pycache__
+rsna/models/callbacks/__pycache__
+rsna/models/optimizers/__pycache__
+rsna/models/schedulers/__pycache__
+rsna/models/heads/__pycache__

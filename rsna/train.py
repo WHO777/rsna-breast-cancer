@@ -13,7 +13,7 @@ try:
 except ImportError:
     is_wandb_available = False
 
-from hparams_config import get_default_config
+from rsna import config
 from rsna.models import (build_classifier, build_metrics, build_callbacks, build_loss,
                     build_optimizer, build_scheduler)
 from rsna.datasets import build_bataset
@@ -54,7 +54,7 @@ def _get_model_dir(name=None):
 
 
 def main(_):
-    cfg = get_default_config()
+    cfg = config.get_default_config()
     cfg.override(FLAGS.hparams)
 
     _init_devices()

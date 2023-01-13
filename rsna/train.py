@@ -14,11 +14,11 @@ except ImportError:
     is_wandb_available = False
 
 from hparams_config import get_default_config
-from models import (build_classifier, build_metrics, build_callbacks, build_loss,
+from rsna.models import (build_classifier, build_metrics, build_callbacks, build_loss,
                     build_optimizer, build_scheduler)
-from datasets import build_bataset
-from utils.train import set_precision_policy, get_strategy
-from utils.model import get_layer_from_model
+from rsna.datasets import build_bataset
+from rsna.utils.train import set_precision_policy, get_strategy
+from rsna.utils.model import get_layer_from_model
 
 FLAGS = flags.FLAGS
 DEFAULT_PARENT_MODEL_DIR = str(Path('runs') / 'train')

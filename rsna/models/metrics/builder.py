@@ -3,7 +3,7 @@ import inspect
 from tensorflow.keras.metrics import *
 from mmcv.utils.registry import Registry
 
-from utils.config import parse_objects_from_cfg
+from rsna.utils.config import parse_objects_from_cfg
 
 METRICS = Registry('metrics')
 

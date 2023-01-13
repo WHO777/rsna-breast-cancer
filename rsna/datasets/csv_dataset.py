@@ -102,12 +102,12 @@ def get_heavy_dataset(image_paths,
             (image_paths, labels))
     else:
         dataset = tf.data.Dataset.from_tensor_slices(image_paths)
-    options = tf.data.Options()
-    options.deterministic = False
-    options.experimental_optimization.map_parallelization = True
-    options.experimental_optimization.parallel_batch = True
-    options.experimental_distribute.auto_shard_policy = tf.data.experimental.AutoShardPolicy.FILE
-    dataset = dataset.with_options(options)
+    # options = tf.data.Options()
+    # options.deterministic = False
+    # options.experimental_optimization.map_parallelization = True
+    # options.experimental_optimization.parallel_batch = True
+    # options.experimental_distribute.auto_shard_policy = tf.data.experimental.AutoShardPolicy.FILE
+    # dataset = dataset.with_options(options)
     dataset = dataset.shuffle(8 * batch_size, reshuffle_each_iteration=True) if shuffle else dataset
     dataset = dataset.map(decode_and_preprocess_fn, num_parallel_calls=tf.data.AUTOTUNE)
     dataset = dataset.prefetch(batch_size)
